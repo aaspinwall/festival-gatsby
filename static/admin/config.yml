@@ -1,0 +1,231 @@
+backend:
+  name: git-gateway
+  branch: master
+  commit_messages:
+    create: "Create {{collection}} “{{slug}}”"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Delete {{collection}} “{{slug}}”"
+    uploadMedia: "[skip ci] Upload “{{path}}”"
+    deleteMedia: "[skip ci] Delete “{{path}}”"
+
+media_folder: static/img
+public_folder: /img
+
+collections:
+  - name: "workshops"
+    label: "Workshop"
+    folder: "src/pages/workshops"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "workshops",
+        }
+      - {
+          label: Images,
+          hint: "This requires exactly 6 images",
+          name: images,
+          widget: list,
+          fields:
+            [
+              { label: Image, name: image, widget: image },
+              { label: Text, name: text, widget: text },
+            ],
+        }
+      - {
+          label: "Price",
+          name: "price",
+          widget: "number",
+          value_type: "float",
+          hint: "This is the actual price",
+        }
+      - {
+          label: "Discounted",
+          name: "discounted",
+          widget: "number",
+          value_type: "float",
+          hint: "This price will be crossed off",
+        }
+      - {
+          label: "Url",
+          name: "title",
+          widget: "string",
+          hint: "Only lowercase characters and dashes allowed (-) | Example: john-doe ",
+        }
+      - { label: "Title", name: "maintitle", widget: "string" }
+      - { label: "Author", name: "author", widget: "string" }
+      - { label: "Where", name: "where", widget: "string" }
+      - {
+          label: "Times",
+          name: "times",
+          widget: object,
+          fields:
+            [
+              {
+                label: "Start",
+                name: "start",
+                widget: "datetime",
+                date_format: "DD.MM.YYYY",
+                time_format: "HH:mm",
+              },
+              {
+                label: "End",
+                name: "end",
+                widget: "datetime",
+                date_format: "DD.MM.YYYY",
+                time_format: "HH:mm",
+              },
+            ],
+        }
+      - { label: "About speaker", name: "aboutspeaker", widget: "markdown" }
+      - { label: "Speaker image", name: "speakerimage", widget: "image" }
+      - { label: "About workshop", name: "aboutworkshop", widget: "markdown" }
+      - { label: "How to join", name: "howtojoin", widget: "markdown" }
+      - { label: "What is provided", name: "provided", widget: "markdown" }
+      - { label: "What to prepare", name: "prepare", widget: "markdown" }
+      - {
+          label: Social,
+          name: social,
+          widget: list,
+          required: true,
+          hint: "Please have at least one social media link or website",
+          fields:
+            [
+              { label: Name, name: name, widget: string },
+              { label: Link, name: link, widget: string },
+            ],
+        }
+  - name: "talks"
+    label: "Talk"
+    folder: "src/pages/talks"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "talks",
+        }
+      - {
+          label: Images,
+          hint: "This requires exactly 6 images",
+          name: images,
+          widget: list,
+          fields:
+            [
+              { label: Image, name: image, widget: image },
+              { label: Text, name: text, widget: text },
+            ],
+        }
+      - {
+          label: "Url",
+          name: "title",
+          widget: "string",
+          hint: "Only lowercase characters and dashes allowed (-) | Example: john-doe ",
+        }
+      - {
+          label: "Price",
+          name: "price",
+          widget: "number",
+          value_type: "float",
+          hint: "This is the actual price",
+        }
+      - {
+          label: "Discounted",
+          name: "discounted",
+          widget: "number",
+          value_type: "float",
+          hint: "This price will be crossed off",
+        }
+      - { label: "Title", name: "maintitle", widget: "string" }
+      - { label: "Author", name: "author", widget: "string" }
+      - { label: "Where", name: "where", widget: "string" }
+      - {
+          label: "Times",
+          name: "times",
+          widget: object,
+          fields:
+            [
+              {
+                label: "Start",
+                name: "start",
+                widget: "datetime",
+                date_format: "DD.MM.YYYY",
+                time_format: "HH:mm",
+              },
+              {
+                label: "End",
+                name: "end",
+                widget: "datetime",
+                date_format: "DD.MM.YYYY",
+                time_format: "HH:mm",
+              },
+            ],
+        }
+      - { label: "About speaker", name: "aboutspeaker", widget: "markdown" }
+      - { label: "Speaker image", name: "speakerimage", widget: "image" }
+      - { label: "About talk", name: "abouttalk", widget: "markdown" }
+      - { label: "How to join", name: "howtojoin", widget: "markdown" }
+      - { label: "What is provided", name: "provided", widget: "markdown" }
+      - { label: "What to prepare", name: "prepare", widget: "markdown" }
+      - {
+          label: Social,
+          name: social,
+          widget: list,
+          required: true,
+          hint: "Please have at least one social media link or website",
+          fields:
+            [
+              { label: Name, name: name, widget: string, required: true },
+              { label: Link, name: link, widget: string, required: true },
+            ],
+        }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "src/pages/welcome/index.md"
+        label: "Ing Welcome"
+        name: "ingwelcome"
+        fields:
+          - { label: "Title", name: "title", widget: "text" }
+          - { label: "Subtitle", name: "subtitle", widget: "text" }
+          - {
+              label: Talks,
+              name: talks,
+              widget: list,
+              fields:
+                [
+                  { label: Heading, name: heading, widget: string },
+                  { label: Author, name: author, widget: string },
+                  { label: Link, name: link, widget: string, default: "/" },
+                  { label: Image, name: image, widget: image },
+                ],
+            }
+          - {
+              label: Workshops,
+              name: workshops,
+              widget: list,
+              fields:
+                [
+                  { label: Heading, name: heading, widget: string },
+                  { label: Author, name: author, widget: string },
+                  { label: Link, name: link, widget: string, default: "/" },
+                  { label: Image, name: image, widget: image },
+                ],
+            }
+          - {
+              label: Sponsors,
+              name: sponsors,
+              widget: list,
+              fields:
+                [
+                  { label: Caption, name: caption, widget: string },
+                  { label: Link, name: link, widget: string },
+                  { label: Image, name: image, widget: image },
+                ],
+            }
