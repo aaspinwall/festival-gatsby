@@ -14,4 +14,6 @@ The CEO’s main concern was the speed of the original site. It was usually taki
 
 I used Gatsby as my static page generator to ensure that the pages would load as fast as possible. I also chose this technology because it’s based on React, this gave me flexibility to use components that I had been working on previously. **I built a markdown based content management system for the team to add and modify content easily.** I deployed it to Netlify because it offers an open source CMS and admin solutions out of the box. Finally, I implemented Stripe for payments using their Nodejs API. **Since I wanted to avoid deploying a server, I added a serverless lambda function that talked to the Stripe API.**
 
-Read more [here](https://aaspinwall.com/projects/ing/overview/)
+Read more about this project [here](https://aaspinwall.com/projects/ing/overview/)
+
+_Please note that this code served as a proof of concept for the website and was open sourced. The production code is not available publicly._
